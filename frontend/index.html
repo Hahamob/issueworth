@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Evidence-backed risk checks for paid GitHub issues." />
+    <meta name="theme-color" content="#07120f" />
+    <title>IssueWorth — Check the work before you do the work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="IssueWorth home">
+        <span class="brand-mark" aria-hidden="true">IW</span>
+        <span>IssueWorth</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#how">How it works</a>
+        <a href="#signals">Signals</a>
+        <a class="nav-cta" href="#analyze">Run a check</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="eyebrow"><span></span> Decision intelligence for open-source work</div>
+        <h1>Check the work<br /><em>before you do the work.</em></h1>
+        <p class="hero-copy">
+          Paid GitHub issues can hide stale maintainers, crowded claims, or imaginary payouts.
+          IssueWorth turns public evidence into a decision you can defend.
+        </p>
+
+        <div class="analyzer-shell" id="analyze">
+          <form id="analyze-form" novalidate>
+            <label for="issue-url">Public GitHub issue URL</label>
+            <div class="input-row">
+              <div class="url-input-wrap">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M10.7 13.3a1 1 0 0 0 1.4 0l3-3a3 3 0 0 0-4.2-4.2L9.2 7.8m4.1 2.9a1 1 0 0 0-1.4 0l-3 3a3 3 0 0 0 4.2 4.2l1.7-1.7"/></svg>
+                <input id="issue-url" name="url" type="url" placeholder="https://github.com/owner/repo/issues/123" autocomplete="url" required />
+              </div>
+              <button class="primary-button" type="submit">
+                <span>Analyze issue</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+            <div class="form-meta">
+              <span>No login. No token. Public metadata only.</span>
+              <button class="text-button" id="demo-button" type="button">See sample report</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="trust-row" aria-label="Core product promises">
+          <span><b>01</b> Evidence, not hype</span>
+          <span><b>02</b> Explainable scoring</span>
+          <span><b>03</b> Read-only by design</span>
+        </div>
+      </section>
+
+      <section class="result-section" id="result" hidden aria-live="polite">
+        <div class="result-topline">
+          <div>
+            <span class="section-kicker">Opportunity report</span>
+            <h2 id="result-title">Repository issue</h2>
+            <a id="result-link" href="#" target="_blank" rel="noreferrer">View source issue ↗</a>
+          </div>
+          <div class="score-orbit" id="score-orbit">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="score-track" cx="60" cy="60" r="52" />
+              <circle class="score-progress" id="score-progress" cx="60" cy="60" r="52" />
+            </svg>
+            <div><strong id="score-value">0</strong><span>/100</span></div>
+          </div>
+        </div>
+
+        <div class="verdict-card">
+          <div class="verdict-icon" id="verdict-icon">?</div>
+          <div>
+            <span>IssueWorth verdict</span>
+            <h3 id="verdict-title">Analysing…</h3>
+            <p id="verdict-copy"></p>
+          </div>
+          <div class="payout-pill"><span>Stated payout</span><strong id="payout-value">—</strong></div>
+        </div>
+
+        <div class="component-grid" id="component-grid"></div>
+
+        <div class="evidence-grid">
+          <article class="evidence-card blockers">
+            <header><span></span><h3>Deal breakers</h3><b id="blocker-count">0</b></header>
+            <ul id="blocker-list"></ul>
+          </article>
+          <article class="evidence-card warnings">
+            <header><span></span><h3>Verify first</h3><b id="warning-count">0</b></header>
+            <ul id="warning-list"></ul>
+          </article>
+          <article class="evidence-card positives">
+            <header><span></span><h3>Positive signals</h3><b id="positive-count">0</b></header>
+            <ul id="positive-list"></ul>
+          </article>
+        </div>
+
+        <div class="metrics-strip" id="metrics-strip"></div>
+        <p class="disclaimer" id="disclaimer"></p>
+      </section>
+
+      <section class="loading-section" id="loading" hidden aria-live="polite">
+        <div class="scanner"><div></div></div>
+        <p id="loading-label">Reading public issue evidence…</p>
+      </section>
+
+      <section class="error-section" id="error" hidden role="alert">
+        <strong>We could not complete that check.</strong>
+        <p id="error-message"></p>
+      </section>
+
+      <section class="how-section" id="how">
+        <div class="section-heading">
+          <span class="section-kicker">A five-minute decision, compressed</span>
+          <h2>One URL. Four evidence layers.</h2>
+          <p>IssueWorth reads the signals experienced contributors check manually, then shows exactly how the conclusion was reached.</p>
+        </div>
+        <div class="steps-grid">
+          <article><b>01</b><h3>Funding evidence</h3><p>Finds stated amounts, bounty labels, payment bots, funded-platform signals, and proposal-only language.</p></article>
+          <article><b>02</b><h3>Repository health</h3><p>Measures recent development, project status, audience, and a sample of actual pull-request merges.</p></article>
+          <article><b>03</b><h3>Real availability</h3><p>Checks assignees, issue discussion, claim language, and open pull requests referencing the work.</p></article>
+          <article><b>04</b><h3>Task clarity</h3><p>Looks for acceptance criteria, reproducible examples, tests, and recent maintainer activity.</p></article>
+        </div>
+      </section>
+
+      <section class="signals-section" id="signals">
+        <div class="signal-panel">
+          <div>
+            <span class="section-kicker">Built for builders, not bettors</span>
+            <h2>A score is only useful when you can challenge it.</h2>
+          </div>
+          <p>Every recommendation is decomposed into observable signals. No secret prompt, no invented certainty, and no automatic claiming. You remain the decision-maker.</p>
+        </div>
+        <div class="signal-ticker" aria-label="Signals analysed">
+          <span>payout confidence</span><i></i><span>maintainer recency</span><i></i><span>merge ratio</span><i></i><span>claim density</span><i></i><span>open PRs</span><i></i><span>acceptance clarity</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><span class="brand-mark small">IW</span><strong>IssueWorth</strong></div>
+      <p>Built on AWS for Zero to Shipped 2026.</p>
+      <p>Decision support, not a payment guarantee.</p>
+    </footer>
+  </body>
+</html>
