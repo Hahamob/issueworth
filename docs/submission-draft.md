@@ -34,17 +34,22 @@ This is not another opaque AI opinion. The current engine is deterministic, repr
 - **Amazon DynamoDB** keeps short-lived, TTL-expiring audit records for product analytics without collecting GitHub credentials.
 - **AWS CloudFormation** makes the full architecture reproducible.
 
-The application is live at: **[INSERT PUBLIC CLOUDFRONT URL]**
+The application is live at: **https://d19gqr3o81kg2d.cloudfront.net/**
+
+Source code: **https://github.com/Hahamob/issueworth**
 
 ## How the coding agent helped me ship
 
-I connected Codex to AWS using the Agent Toolkit for AWS and its AWS MCP Server. The agent helped translate the product idea into a production-minded serverless architecture, implement the evidence engine and interface, write tests, generate infrastructure as code, and inspect the deployed AWS resources.
+I connected Codex Desktop to the official AWS MCP Server using AWS Sign-in OAuth and used the AWS Core Agent Toolkit throughout the project. The agent helped translate the product idea into a production-minded serverless architecture, implement the evidence engine and interface, write tests, generate infrastructure as code, deploy the application, and inspect the live AWS resources.
 
 Proof of connection:
 
-- [INSERT SCREENSHOT: Agent Toolkit configuration]
-- [INSERT SCREENSHOT: AWS MCP Server connected]
-- [INSERT SCREENSHOT: agent inspecting the deployed stack]
+- OAuth connection: the official AWS MCP endpoint was registered in Codex and authenticated through AWS Sign-in.
+- Connection test: the MCP server returned the official AWS Region catalog.
+- Deployment inspection: authenticated MCP calls verified STS identity plus the CloudFormation stack, Lambda, API Gateway, DynamoDB, and CloudFront resources.
+- Detailed, credential-safe verification: [`docs/evidence/aws-mcp-verification.md`](evidence/aws-mcp-verification.md)
+
+Cover image: `docs/evidence/issueworth-cover-1200x675.jpg`
 
 ## Implementation quality
 
@@ -65,4 +70,3 @@ The same evidence model can also help maintainers demonstrate that their bounty 
 ## What I learned
 
 Shipping changed the design. A clever score was not enough: the application needed to make uncertainty visible, keep the public demo safe without user credentials, and remain inexpensive to operate. The serverless AWS architecture gave the project a real public endpoint while keeping every component replaceable and auditable.
-

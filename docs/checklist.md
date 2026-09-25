@@ -16,8 +16,8 @@
 - [x] Infrastructure-as-code included.
 - [x] Automated scoring tests included.
 - [ ] AWS CLI v2 installed and authenticated.
-- [ ] Agent Toolkit configured for Codex.
-- [ ] AWS MCP Server connection verified.
+- [x] Agent Toolkit configured for Codex.
+- [x] AWS MCP Server connection verified through OAuth.
 - [x] CloudFormation stack deployed.
 - [x] Frontend uploaded and CloudFront deployment enabled.
 - [x] `/health` returns HTTP 200.
@@ -27,8 +27,8 @@
 ## Submission proof
 
 - [ ] Screenshot: `aws configure agent-toolkit` setup completed.
-- [ ] Screenshot: AWS MCP tools available to Codex.
-- [ ] Screenshot: coding agent reads the live stack/resources.
+- [x] Evidence document: AWS MCP tools available to Codex.
+- [x] Evidence document: coding agent reads the live stack/resources.
 - [ ] Screenshot: CloudFormation stack status is `CREATE_COMPLETE` or `UPDATE_COMPLETE`.
 - [ ] Screenshot: desktop IssueWorth report.
 - [ ] Screenshot: mobile IssueWorth report.
@@ -38,8 +38,8 @@
 
 ## Builder Center project
 
-- [ ] Join the hackathon.
-- [ ] Create the project.
+- [x] Join the hackathon.
+- [x] Create the project draft.
 - [ ] Add `#commercial-potential`.
 - [ ] Add `#startups`.
 - [ ] Paste and polish the submission story.
