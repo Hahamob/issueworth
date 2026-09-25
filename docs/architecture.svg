@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">IssueWorth AWS serverless architecture</title>
+  <desc id="desc">A browser uses CloudFront and a private S3 frontend, and calls an API Gateway backed Lambda function that reads GitHub public data and writes expiring records to DynamoDB.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06100d"/><stop offset="1" stop-color="#0b1d16"/></linearGradient>
+    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c5ff7b"/><stop offset="1" stop-color="#78f0aa"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#78f0aa"/></marker>
+    <style>
+      .label{font:700 24px 'Arial',sans-serif;fill:#edf8f1}.small{font:400 16px 'Arial',sans-serif;fill:#91a79c}.tiny{font:400 13px 'Courier New',monospace;fill:#78f0aa;letter-spacing:1px}.box{fill:#0d1d17;stroke:#335545;stroke-width:2}.line{fill:none;stroke:#78f0aa;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1440" height="900" fill="url(#bg)"/>
+  <g opacity=".08" stroke="#78f0aa"><path d="M0 150h1440M0 300h1440M0 450h1440M0 600h1440M0 750h1440"/><path d="M180 0v900M360 0v900M540 0v900M720 0v900M900 0v900M1080 0v900M1260 0v900"/></g>
+  <text x="90" y="90" class="tiny">ISSUEWORTH / AWS ARCHITECTURE</text>
+  <text x="90" y="140" class="label" font-size="42">Evidence in. Decision out.</text>
+  <text x="90" y="178" class="small">Private static delivery, rate-limited analysis, short-lived audit data.</text>
+
+  <g transform="translate(80 330)">
+    <rect class="box" width="220" height="150" rx="22"/>
+    <rect x="24" y="28" width="172" height="92" rx="8" fill="#07120f" stroke="#78f0aa"/>
+    <path d="M90 134h40M110 120v14" stroke="#78f0aa" stroke-width="4"/>
+    <text x="110" y="70" text-anchor="middle" class="label">Browser</text>
+    <text x="110" y="98" text-anchor="middle" class="small">Contributor</text>
+  </g>
+
+  <g transform="translate(410 235)">
+    <rect class="box" width="240" height="130" rx="22"/>
+    <circle cx="52" cy="50" r="24" fill="none" stroke="#78f0aa" stroke-width="4"/>
+    <path d="M28 50h48M52 26c12 13 12 35 0 48M52 26c-12 13-12 35 0 48" stroke="#78f0aa" fill="none"/>
+    <text x="92" y="49" class="label">CloudFront</text>
+    <text x="92" y="76" class="small">Global HTTPS edge</text>
+    <text x="30" y="108" class="tiny">PUBLIC APP</text>
+  </g>
+  <g transform="translate(410 505)">
+    <rect class="box" width="240" height="130" rx="22"/>
+    <path d="M30 43h45v44H30zM30 43l22-12 23 12" fill="none" stroke="#78f0aa" stroke-width="4"/>
+    <text x="92" y="55" class="label">Amazon S3</text>
+    <text x="92" y="82" class="small">Private frontend</text>
+    <text x="30" y="108" class="tiny">OAC ONLY</text>
+  </g>
+
+  <g transform="translate(760 235)">
+    <rect class="box" width="260" height="130" rx="22"/>
+    <path d="M34 40h45v45H34zM45 29v67M68 29v67" fill="none" stroke="#78f0aa" stroke-width="3"/>
+    <text x="96" y="54" class="label">API Gateway</text>
+    <text x="96" y="81" class="small">HTTP API + throttle</text>
+    <text x="34" y="108" class="tiny">POST /ANALYZE</text>
+  </g>
+  <g transform="translate(760 505)">
+    <rect class="box" width="260" height="130" rx="22"/>
+    <path d="M35 35l20 12v24L35 83 15 71V47z" transform="translate(17 2)" fill="none" stroke="#78f0aa" stroke-width="4"/>
+    <text x="96" y="54" class="label">AWS Lambda</text>
+    <text x="96" y="81" class="small">Evidence + scoring</text>
+    <text x="34" y="108" class="tiny">ARM64 / NODE.JS 20</text>
+  </g>
+
+  <g transform="translate(1130 235)">
+    <rect class="box" width="230" height="130" rx="22"/>
+    <path d="M28 42c0-15 48-15 48 0v42c0 15-48 15-48 0zM28 42c0 15 48 15 48 0M28 63c0 15 48 15 48 0" fill="none" stroke="#78f0aa" stroke-width="3"/>
+    <text x="92" y="54" class="label">DynamoDB</text>
+    <text x="92" y="81" class="small">Expiring audits</text>
+    <text x="28" y="108" class="tiny">7-DAY TTL</text>
+  </g>
+  <g transform="translate(1130 505)">
+    <rect class="box" width="230" height="130" rx="22"/>
+    <path d="M30 42h45v42H30zM41 32h45v42" fill="none" stroke="#78f0aa" stroke-width="3"/>
+    <text x="94" y="54" class="label">GitHub API</text>
+    <text x="94" y="81" class="small">Public metadata</text>
+    <text x="30" y="108" class="tiny">READ ONLY</text>
+  </g>
+
+  <path class="line" d="M300 385C350 385 360 300 410 300"/>
+  <path class="line" d="M530 365v140"/>
+  <path class="line" d="M300 415C500 415 560 300 760 300"/>
+  <path class="line" d="M890 365v140"/>
+  <path class="line" d="M1020 570h110"/>
+  <path class="line" d="M1020 550c70-40 30-250 110-250"/>
+
+  <g transform="translate(90 770)">
+    <rect width="1260" height="60" rx="18" fill="#0d1d17" stroke="#335545"/>
+    <circle cx="32" cy="30" r="6" fill="#78f0aa" filter="url(#glow)"/>
+    <text x="55" y="36" class="small">Provisioned reproducibly with AWS CloudFormation · least-privilege IAM · no GitHub credentials collected</text>
+  </g>
+</svg>
+
